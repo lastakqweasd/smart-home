@@ -1,0 +1,210 @@
+{
+  "devices": [
+    {
+      "id": "1746950563781",
+      "name": "卧室空调",
+      "type": "ac",
+      "brand": "gree",
+      "room": "卧室",
+      "status": false,
+      "temperature": 16
+    },
+    {
+      "id": "1746951021555",
+      "name": "卧室主灯",
+      "type": "light",
+      "brand": "xiaomi",
+      "room": "卧室",
+      "status": false,
+      "brightness": 31
+    },
+    {
+      "id": "1746952473402",
+      "name": "客厅主灯",
+      "type": "light",
+      "brand": "xiaomi",
+      "room": "客厅",
+      "status": true,
+      "brightness": 70
+    },
+    {
+      "id": "1746952514079",
+      "name": "客厅摄像头",
+      "type": "monitor",
+      "brand": "hk",
+      "room": "客厅",
+      "status": false
+    },
+    {
+      "id": "1746952548073",
+      "name": "客厅电视",
+      "type": "tv",
+      "brand": "sony",
+      "room": "客厅",
+      "status": false
+    },
+    {
+      "id": "1746952579919",
+      "name": "卧室空调",
+      "type": "ac",
+      "brand": "gree",
+      "room": "卧室",
+      "status": false,
+      "temperature": 30
+    },
+    {
+      "id": "1746953309611",
+      "name": "卧室窗帘",
+      "type": "curtain",
+      "brand": "aqara",
+      "room": "卧室",
+      "status": false,
+      "openPercentage": 28
+    },
+    {
+      "id": "1746958363266",
+      "name": "客厅插座",
+      "type": "outlet",
+      "brand": "xiaomi",
+      "room": "客厅",
+      "status": false
+    },
+    {
+      "id": "1746958394294",
+      "name": "客厅次灯",
+      "type": "light",
+      "brand": "philips",
+      "room": "客厅",
+      "status": true,
+      "brightness": 70
+    },
+    {
+      "id": "1748880032218",
+      "name": "asd",
+      "type": "ac",
+      "brand": "midea",
+      "room": "厨房",
+      "status": false,
+      "temperature": 22
+    },
+    {
+      "id": "1748964482871",
+      "name": "my_monitor",
+      "type": "monitor",
+      "brand": "hk",
+      "room": "厨房",
+      "status": false
+    }
+  ],
+  "rooms": [
+    {
+      "id": "1",
+      "name": "客厅"
+    },
+    {
+      "id": "2",
+      "name": "卧室"
+    },
+    {
+      "id": "3",
+      "name": "厨房"
+    },
+    {
+      "id": "4",
+      "name": "浴室"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "1",
+      "name": "回家模式",
+      "description": "打开客厅灯",
+      "devices": [
+        {
+          "type": "light",
+          "room": "客厅",
+          "status": true,
+          "brightness": 70
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "睡眠模式",
+      "description": "关闭卧室灯，拉上窗帘",
+      "devices": [
+        {
+          "type": "light",
+          "room": "卧室",
+          "status": false
+        },
+        {
+          "type": "curtain",
+          "room": "卧室",
+          "status": false
+        }
+      ]
+    },
+    {
+      "id": "1748960877199",
+      "name": "test",
+      "description": "",
+      "devices": [
+        {
+          "status": true,
+          "brightness": 57
+        }
+      ],
+      "createdAt": "2025-06-03T14:27:57.199Z"
+    },
+    {
+      "id": "1748960987803",
+      "name": "test",
+      "description": "",
+      "devices": [
+        {
+          "type": "light",
+          "status": true,
+          "brightness": 70
+        }
+      ],
+      "createdAt": "2025-06-03T14:29:47.803Z"
+    },
+    {
+      "id": "1748963893337",
+      "name": "休息",
+      "description": "",
+      "devices": [
+        {
+          "type": "ac",
+          "status": true,
+          "temperature": "30"
+        }
+      ],
+      "createdAt": "2025-06-03T15:18:13.337Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "permissions": [
+        "read",
+        "write",
+        "manage"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "member",
+      "password": "member123",
+      "role": "member",
+      "permissions": [
+        "read",
+        "write"
+      ]
+    }
+  ]
+}
