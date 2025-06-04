@@ -1,0 +1,2 @@
+# smart-home
+前端代码放在smart_home_system,后端代码放在smart_home_backend。想要参与协作需要将github用户名或邮箱发送给仓库所有者，仓库所有者邀请协作后，并同意后可以参与仓库的修改
