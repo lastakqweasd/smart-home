@@ -60,6 +60,13 @@ export default createStore({
       state.scenes.push(scene)
       // localStorage.setItem('scenes', JSON.stringify(state.scenes))
     },
+    //注册功能的增加！
+    REGISTER_SUCCESS(state, user) {
+      state.user = user
+    },
+    REGISTER_ERROR(state, error) {
+      state.error = error
+    },
 
   },
   actions: {
@@ -215,6 +222,111 @@ export default createStore({
           resolve()
         }, 500)
       })
+    },
+
+    // async register({ commit }, userData) {
+    //   commit('SET_LOADING', true);
+    //   commit('SET_ERROR', null);
+      
+    //   try {
+    //     console.log('开始注册流程...', userData); // 调试日志
+        
+    //     // 1. 先检查用户名是否已存在
+    //     const existingUsers = await api.getUsers({ name: userData.username });
+    //     console.log('查询现有用户结果:', existingUsers); // 调试日志
+        
+    //     if (existingUsers.data.length > 0) {
+    //       commit('SET_ERROR', '用户名已存在');
+    //       return false;
+    //     }
+        
+    //     // 2. 创建新用户 - 匹配你的 db.json 结构
+    //     const newUser = {
+    //       id: Date.now().toString(),
+    //       name: userData.username,
+    //       password: userData.password,
+    //       role: 'member', // 默认角色改为 member
+    //       permissions: ['read', 'write'] // 默认权限
+    //     };
+        
+    //     // 如果有邮箱，添加邮箱字段
+    //     if (userData.email) {
+    //       newUser.email = userData.email;
+    //     }
+        
+    //     console.log('准备创建用户:', newUser); // 调试日志
+        
+    //     // 3. 调用 API 保存用户
+    //     const response = await api.postUser(newUser); // 注意：可能是 postUser 而不是 createUser
+    //     console.log('API 响应:', response); // 调试日志
+        
+    //     // 4. 注册成功后自动登录 - 使用现有的 mutation
+    //     commit('SET_USER', response.data);
+        
+    //     return true;
+    //   } catch (error) {
+    //     console.error('注册失败详情:', error);
+        
+    //     // 使用现有的 SET_ERROR mutation
+    //     if (error.response?.status === 404) {
+    //       commit('SET_ERROR', 'API 接口不存在，请检查服务器配置');
+    //     } else if (error.response?.status === 500) {
+    //       commit('SET_ERROR', '服务器内部错误');
+    //     } else {
+    //       commit('SET_ERROR', '注册失败，请重试');
+    //     }
+        
+    //     return false;
+    //   } finally {
+    //     commit('SET_LOADING', false);
+    //   }
+    // }
+    async register({ commit }, userData) {
+      commit('SET_LOADING', true);
+      commit('SET_ERROR', null);
+      
+      try {
+        console.log('开始注册...', userData);
+        
+        // 1. 检查用户名是否已存在
+        const existingUsers = await api.getUsers({ name: userData.username });
+        console.log('现有用户查询结果:', existingUsers);
+        
+        if (existingUsers.data.length > 0) {
+          commit('SET_ERROR', '用户名已存在');
+          return false;
+        }
+        
+        // 2. 创建新用户数据
+        const newUser = {
+          id: Date.now().toString(),
+          name: userData.username,
+          password: userData.password,
+          role: 'member',
+          permissions: ['read', 'write']
+        };
+        
+        if (userData.email) {
+          newUser.email = userData.email;
+        }
+        
+        console.log('准备创建用户:', newUser);
+        
+        // 3. 使用修复后的 API 方法
+        const response = await api.createUser(newUser);
+        console.log('创建用户成功:', response.data);
+        
+        // 4. 注册成功后自动登录
+        commit('SET_USER', response.data);
+        
+        return true;
+      } catch (error) {
+        console.error('注册失败详情:', error);
+        commit('SET_ERROR', '注册失败，请重试');
+        return false;
+      } finally {
+        commit('SET_LOADING', false);
+      }
     }
 
   },
@@ -233,6 +345,11 @@ export default createStore({
     },
     isAuthenticated: state => !!state.user,
     currentUser: state => state.user
-  }
+  },
+  // 获取注册错误信息
+  getRegisterError: state => state.error,
+  
+  // 检查是否正在加载
+  isLoading: state => state.loading
 })
 

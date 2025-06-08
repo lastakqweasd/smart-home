@@ -6,8 +6,8 @@
       "type": "ac",
       "brand": "gree",
       "room": "卧室",
-      "status": false,
-      "temperature": 16
+      "status": true,
+      "temperature": 21
     },
     {
       "id": "1746951021555",
@@ -200,6 +200,16 @@
       "id": "2",
       "name": "member",
       "password": "member123",
+      "role": "member",
+      "permissions": [
+        "read",
+        "write"
+      ]
+    },
+    {
+      "id": "1749415929547",
+      "name": "111",
+      "password": "111111",
       "role": "member",
       "permissions": [
         "read",
